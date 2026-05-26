@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saludable Paso — Mejora tu salud paso a paso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #4ade80;
+    --green-dark: #16a34a;
+    --green-soft: #bbf7d0;
+    --green-glass: rgba(74,222,128,0.08);
+    --black: #0a0a0a;
+    --off-black: #111827;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #6b7280;
+    --gray-600: #374151;
+    --gray-800: #1f2937;
+    --glass: rgba(255,255,255,0.7);
+    --glass-dark: rgba(17,24,39,0.7);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 16px 48px rgba(0,0,0,0.06);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --radius-xs: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ffffff;
+    color: #111827;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 5%;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255,255,255,0.92);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    transition: all .3s ease;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: #111827;
+  }
+  .nav-logo span { color: var(--green-dark); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a {
+    font-size: .875rem;
+    font-weight: 500;
+    color: #374151;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: #111827; }
+  .nav-cta {
+    background: #111827;
+    color: #ffffff !important;
+    padding: .5rem 1.25rem;
+    border-radius: 100px;
+    font-size: .875rem;
+    font-weight: 500;
+    transition: transform .2s, box-shadow .2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; }
+  .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-mobile-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: #111827; border-radius: 2px;
+    margin: 5px 0; transition: all .3s;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5% 80px;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(74,222,128,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(74,222,128,0.05) 0%, transparent 60%);
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .hero-grid-overlay {
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    }
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-glass);
+    border: 1px solid rgba(74,222,128,0.2);
+    color: var(--green-dark);
+    padding: .4rem 1rem;
+    border-radius: 100px;
+    font-size: .8rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; background: var(--green-dark); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: #111827;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-dark); }
+  .hero p {
+    font-size: 1.15rem;
+    color: #374151;
+    font-weight: 400;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp .6s .2s ease both;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; animation: fadeUp .6s .3s ease both; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #111827;
+    color: #fff;
+    padding: .85rem 2rem;
+    border-radius: 100px;
+    font-size: .95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #374151;
+    font-size: .95rem;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .btn-secondary:hover { color: #111827; }
+  .btn-secondary svg { transition: transform .2s; }
+  .btn-secondary:hover svg { transform: translateX(3px); }
+
+  /* HERO VISUAL */
+  .hero-visual { animation: fadeIn .8s .3s ease both; }
+  .hero-card-stack { position: relative; height: 420px; }
+  .stat-card {
+    position: absolute;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+  @media (prefers-color-scheme: dark) {
+    .stat-card { background: rgba(31,41,55,0.8); border: 1px solid rgba(255,255,255,0.08); }
+  }
+  .stat-card-main {
+    width: 260px; top: 40px; left: 20px;
+    animation: float 4s ease-in-out infinite;
+  }
+  .stat-card-calories {
+    width: 200px; top: 0; right: 0;
+    animation: float 4s 1s ease-in-out infinite;
+  }
+  .stat-card-water {
+    width: 180px; bottom: 40px; right: 20px;
+    animation: float 4s 2s ease-in-out infinite;
+  }
+  .stat-card-habits {
+    width: 165px; bottom: 10px; left: 0;
+    animation: float 4s .5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .stat-label { font-size: .75rem; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
+  .stat-value { font-size: 2rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: #111827; }
+  .stat-value .unit { font-size: 1rem; color: #6b7280; margin-left: 2px; }
+  .stat-sub { font-size: .8rem; color: #6b7280; margin-top: .25rem; }
+  .stat-green { color: var(--green-dark); }
+  .mini-bar { display: flex; gap: 3px; margin-top: .75rem; }
+  .mini-bar-seg { height: 4px; border-radius: 2px; background: #e5e7eb; flex: 1; transition: all .3s; }
+  .mini-bar-seg.active { background: var(--green-dark); }
+  .ring-chart { width: 56px; height: 56px; margin: 0 auto .75rem; }
+  .progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+  .progress-bar-wrap { height: 4px; background: #e5e7eb; border-radius: 2px; flex: 1; margin: 0 .75rem; }
+  .progress-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green-dark), var(--green)); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0;transform:scale(.97)} to{opacity:1;transform:scale(1)} }
+
+  /* STATS BAR */
+  .stats-bar {
+    padding: 3rem 5%;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+  }
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    text-align: center;
+  }
+  .stat-item-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: .25rem;
+    color: #111827;
+  }
+  .stat-item-num span { color: var(--green-dark); }
+  .stat-item-label { font-size: .875rem; color: #374151; }
+
+  /* SECTIONS */
+  section { padding: 100px 5%; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: .78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 16px; height: 2px; background: var(--green-dark); border-radius: 1px; }
+  .section-header { max-width: 1200px; margin: 0 auto 4rem; }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: -0.03em; line-height: 1.1;
+    margin-bottom: .75rem;
+    color: #111827;
+  }
+  .section-header h2 em { font-style: italic; color: var(--green-dark); }
+  .section-header p { font-size: 1.05rem; color: #374151; font-weight: 400; max-width: 520px; }
+  .max-wrap { max-width: 1200px; margin: 0 auto; }
+
+  /* TIPS CARDS */
+  .tips-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .tip-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+    cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .tip-card::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(74,222,128,0.06), transparent 60%);
+    opacity: 0; transition: opacity .3s;
+  }
+  .tip-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(74,222,128,0.3); }
+  .tip-card:hover::before { opacity: 1; }
+  .tip-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: #f9fafb;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+    transition: background .3s;
+  }
+  .tip-card:hover .tip-icon { background: rgba(74,222,128,0.12); }
+  .tip-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .5rem; letter-spacing: -0.01em; color: #111827; }
+  .tip-card p { font-size: .9rem; color: #374151; line-height: 1.65; }
+  .tip-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: .75rem; font-weight: 600;
+    color: var(--green-dark);
+    background: rgba(74,222,128,0.1);
+    padding: .25rem .75rem; border-radius: 100px;
+  }
+
+  /* CALCULATOR */
+  .calc-section { background: #f9fafb; }
+  .calc-wrapper {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .calc-header {
+    background: #111827;
+    padding: 2.5rem 3rem;
+    color: #fff;
+  }
+  .calc-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: .5rem;
+  }
+  .calc-header p { font-size: .9rem; opacity: .6; font-weight: 300; }
+  .calc-body { padding: 3rem; }
+  .calc-mode-toggle {
+    display: flex; gap: .5rem; background: #f3f4f6;
+    padding: .35rem; border-radius: 100px;
+    margin-bottom: 2.5rem;
+    width: fit-content;
+  }
+  .mode-btn {
+    padding: .55rem 1.5rem; border-radius: 100px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .875rem; font-weight: 500;
+    background: transparent; color: #374151;
+    transition: all .25s ease;
+  }
+  .mode-btn.active { background: #ffffff; color: #111827; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; margin-bottom: 2rem; }
+  .form-group label {
+    display: block; font-size: .8rem; font-weight: 600;
+    color: #374151; text-transform: uppercase; letter-spacing: .05em;
+    margin-bottom: .5rem;
+  }
+  .form-group input, .form-group select {
+    width: 100%; padding: .85rem 1rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; color: #111827;
+    background: #ffffff;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--green-dark);
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
+  }
+  .sex-toggle { display: flex; gap: .5rem; }
+  .sex-btn {
+    flex: 1; padding: .85rem; border-radius: var(--radius-sm);
+    border: 1.5px solid #e5e7eb; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
+    background: #ffffff; color: #374151;
+    transition: all .2s;
+  }
+  .sex-btn.active { border-color: var(--green-dark); color: var(--green-dark); background: rgba(74,222,128,0.06); }
+  .calc-submit {
+    width: 100%; padding: 1rem;
+    background: #111827; color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    margin-top: .5rem;
+    grid-column: 1 / -1;
+  }
+  .calc-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+  .calc-results { display: none; margin-top: 2.5rem; animation: fadeUp .4s ease; }
+  .calc-results.show { display: block; }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .result-card {
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .result-card-main { background: #111827; color: #fff; }
+  .result-card-green { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); }
+  .result-card-gray { background: #f9fafb; border: 1px solid #e5e7eb; color: #111827; }
+  .result-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+  .result-label { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .6; margin-bottom: .5rem; }
+  .result-value { font-family: 'DM Serif Display', serif; font-size: 2.8rem; line-height: 1; letter-spacing: -0.03em; margin-bottom: .25rem; }
+  .result-unit { font-size: .85rem; opacity: .5; }
+  .result-tip { font-size: .8rem; opacity: .7; margin-top: .75rem; line-height: 1.5; }
+  .result-card-main .result-label { opacity: .5; }
+  .result-card-main .result-tip { opacity: .6; }
+  .result-card-green .result-label { color: var(--green-dark); }
+  .result-card-green .result-value { color: var(--green-dark); }
+
+  /* HABITS */
+  .habits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .habit-block {
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    transition: transform .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .habit-block:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .habit-block-wide { grid-column: 1 / -1; }
+  .habit-block-accent {
+    background: #111827; color: #fff; border: none;
+  }
+  .habit-block-green {
+    background: rgba(74,222,128,0.06); border-color: rgba(74,222,128,0.2);
+  }
+  .habit-icon { font-size: 2rem; margin-bottom: 1.25rem; }
+  .habit-block h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .75rem; letter-spacing: -0.01em; color: #111827; }
+  .habit-block p { font-size: .9rem; color: #374151; line-height: 1.7; }
+  .habit-block-accent p { color: rgba(255,255,255,0.65); }
+  .habit-block-accent h3 { color: #fff; }
+  .habit-list { list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: .6rem; }
+  .habit-list li { display: flex; align-items: center; gap: .6rem; font-size: .9rem; color: #374151; }
+  .habit-block-accent .habit-list li { color: rgba(255,255,255,0.7); }
+  .habit-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(74,222,128,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .habit-block-accent .habit-check { background: rgba(255,255,255,0.1); }
+  .habit-check::after { content: '✓'; font-size: .6rem; color: var(--green-dark); font-weight: 700; }
+  .habit-block-accent .habit-check::after { color: #fff; }
+
+  /* CHART */
+  .chart-section { background: #f9fafb; }
+  .faq-section { background: #f9fafb; }
+  .chart-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .chart-canvas-wrap { background: #ffffff; border: 1px solid #e5e7eb; border-radius: var(--radius); padding: 2rem; }
+  .chart-canvas-wrap h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; color: #111827; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar-fill { width: 100%; border-radius: 4px 4px 0 0; transition: all .4s ease; }
+  .bar-fill.green { background: var(--green-dark); }
+  .bar-fill.light { background: var(--green-soft); }
+  .bar-lbl { font-size: .65rem; color: #6b7280; }
+  .donut-section { display: flex; gap: 1.5rem; }
+  .donut-wrap { background: #ffffff; border: 1px solid #e5e7eb; border-radius: var(--radius); padding: 2rem; flex: 1; }
+  .donut-wrap h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .chart-legend { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+  .legend-item { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #374151; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testi-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .testi-stars { color: var(--green-dark); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-text { font-size: .9rem; color: #374151; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #f3f4f6;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: .85rem; color: var(--green-dark);
+  }
+  .testi-name { font-size: .9rem; font-weight: 600; color: #111827; }
+  .testi-role { font-size: .78rem; color: #6b7280; }
+
+  /* FAQ */
+  .faq-section { background: #f9fafb; }
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1px; }
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-sm);
+    overflow: hidden; margin-bottom: .75rem;
+  }
+  .faq-q {
+    width: 100%; padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500; color: #111827;
+    text-align: left;
+  }
+  .faq-arrow {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #f3f4f6; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem; color: #374151;
+    transition: transform .3s, background .2s;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); background: var(--green-soft); color: var(--green-dark); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, padding .3s;
+    padding: 0 1.5rem;
+    font-size: .9rem; color: #374151; line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+
+  /* FOOTER */
+  footer {
+    background: #111827;
+    color: rgba(255,255,255,0.85);
+    padding: 4rem 5% 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .footer-brand h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: .75rem;
+  }
+  .footer-brand h3 span { color: var(--green); }
+  .footer-brand p { font-size: .875rem; opacity: .5; line-height: 1.7; max-width: 260px; }
+  .footer-social { display: flex; gap: .75rem; margin-top: 1.5rem; }
+  .social-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem;
+    transition: border-color .2s, background .2s;
+    cursor: pointer;
+  }
+  .social-icon:hover { border-color: var(--green); background: rgba(74,222,128,0.1); }
+  .footer-col h4 { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-col a { display: block; font-size: .875rem; opacity: .6; margin-bottom: .6rem; transition: opacity .2s; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; opacity: .35; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { display: flex; justify-content: center; }
+    .hero-card-stack { width: 360px; }
+    .tips-grid { grid-template-columns: repeat(2, 1fr); }
+    .habits-grid { grid-template-columns: 1fr; }
+    .habit-block-wide { grid-column: 1; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .chart-wrap { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .nav-mobile-toggle { display: block; }
+    .hero { padding: 100px 4% 60px; }
+    .hero h1 { font-size: 2.8rem; }
+    section { padding: 70px 4%; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .calc-body { padding: 1.5rem; }
+    .calc-form { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: .5rem; text-align: center; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .donut-section { flex-direction: column; }
+    .hero-card-stack { height: 320px; width: 300px; }
+    .stat-card-main { width: 200px; top: 20px; left: 10px; }
+    .stat-card-calories { width: 160px; }
+    .stat-card-water { width: 150px; right: 0; }
+    .stat-card-habits { width: 135px; }
+  }
+  @media (max-width: 480px) {
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Saludable<span>Paso</span></a>
+  <div class="nav-links">
+    <a href="#consejos">Consejos</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#habitos">Hábitos</a>
+    <a href="#faq">FAQ</a>
+    <a href="#calculadora" class="nav-cta">Calcular calorías →</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Método avalado por nutricionistas
+      </div>
+      <h1>Saludable<br><em>Paso</em> a Paso</h1>
+      <p>Mejora tu salud paso a paso con consejos diarios, hábitos saludables y control inteligente de calorías.</p>
+      <div class="hero-actions">
+        <a href="#calculadora" class="btn-primary">
+          Comenzar ahora
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#consejos" class="btn-secondary">
+          Ver consejos
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <!-- Main stat card -->
+        <div class="stat-card stat-card-main">
+          <div class="stat-label">Metabolismo basal</div>
+          <div class="stat-value">1,847 <span class="unit">kcal</span></div>
+          <div class="stat-sub stat-green">↑ Óptimo para tu perfil</div>
+          <div class="mini-bar">
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg"></div>
+            <div class="mini-bar-seg"></div>
+          </div>
+        </div>
+
+        <!-- Calories ring -->
+        <div class="stat-card stat-card-calories">
+          <div class="stat-label">Hoy</div>
+          <svg class="ring-chart" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#e5e7eb" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#16a34a" stroke-width="5"
+              stroke-dasharray="110 138" stroke-dashoffset="34" stroke-linecap="round"/>
+            <text x="28" y="33" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">78%</text>
+          </svg>
+          <div style="text-align:center">
+            <div class="stat-value" style="font-size:1.4rem">1,440</div>
+            <div class="stat-sub">de 1,847 kcal</div>
+          </div>
+        </div>
+
+        <!-- Water card -->
+        <div class="stat-card stat-card-water">
+          <div class="stat-label">Hidratación</div>
+          <div class="stat-value" style="font-size:1.6rem">1.8 <span class="unit">L</span></div>
+          <div class="stat-sub">Meta: 2.5 L</div>
+          <div class="mini-bar" style="margin-top:.6rem">
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg active"></div>
+            <div class="mini-bar-seg"></div>
+            <div class="mini-bar-seg"></div>
+          </div>
+        </div>
+
+        <!-- Habits card -->
+        <div class="stat-card stat-card-habits">
+          <div class="stat-label">Hábitos</div>
+          <div class="stat-value" style="font-size:1.4rem">4/6</div>
+          <div class="stat-sub stat-green">Buen progreso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;">
+    <div class="stat-item reveal" style="text-align:center;">
+      <div class="stat-item-num"><span>200</span>+</div>
+      <div class="stat-item-label">Consejos de salud disponibles</div>
+    </div>
+    <div style="width:1px;height:48px;background:#e5e7eb;flex-shrink:0;"></div>
+    <div class="reveal reveal-delay-1" style="max-width:520px;font-size:.95rem;color:#374151;line-height:1.6;">
+      Cada día se muestran <strong>consejos diferentes</strong> seleccionados de nuestra biblioteca. Vuelve mañana para descubrir nuevas recomendaciones basadas en ciencia.
+    </div>
+  </div>
+</div>
+
+<!-- ADSENSE BANNER TOP -->
+<div style="background:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:1rem 5%;display:flex;justify-content:center;align-items:center;">
+  <div style="width:100%;max-width:728px;min-height:90px;background:#f3f4f6;border:1.5px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+    <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
+    <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 728×90 Leaderboard --&gt;</code>
+  </div>
+</div>
+
+<!-- TIPS SECTION -->
+<section id="consejos">
+  <div class="max-wrap">
+    <div class="section-header">
+      <div class="section-tag">Consejos diarios</div>
+      <h2>Pequeños cambios,<br><em>grandes resultados</em></h2>
+      <p>Hábitos respaldados por la ciencia que puedes incorporar desde hoy para transformar tu bienestar.</p>
+    </div>
+
+    <div class="tips-grid" id="tips-grid">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <!-- ADSENSE MID-CONTENT -->
+    <div style="margin-top:3rem;display:flex;justify-content:center;">
+      <div style="width:100%;max-width:970px;min-height:90px;background:#f9fafb;border:1.5px dashed #d1d5db;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+        <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
+        <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 970×90 Large Leaderboard / Responsive --&gt;</code>
+      </div>
+    </div>
+
+    <!-- Tip counter + date -->
+    <div style="margin-top:2rem;text-align:center;font-size:.82rem;color:#6b7280;" id="tips-date-label"></div>
+  </div>
+</section>
+
+<!-- ADSENSE SQUARE / RECTANGLE (between tips and calculator) -->
+<div style="padding:2rem 5%;background:#ffffff;display:flex;justify-content:center;">
+  <div style="width:100%;max-width:336px;min-height:280px;background:#f9fafb;border:1.5px dashed #d1d5db;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+    <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
+    <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 336×280 Large Rectangle --&gt;</code>
+  </div>
+</div>
+
+<!-- CALCULATOR SECTION -->
+<section id="calculadora" class="calc-section">
+  <div class="max-wrap">
+    <div class="section-header">
+      <div class="section-tag">Calculadora</div>
+      <h2>Control inteligente<br><em>de calorías</em></h2>
+      <p>Calcula tus necesidades calóricas exactas con fórmulas científicas y un plan personalizado.</p>
+    </div>
+
+    <div class="calc-wrapper reveal">
+      <div class="calc-header">
+        <h2>🔢 Tu calculadora de calorías</h2>
+        <p>Usa la fórmula Mifflin-St Jeor, la más precisa para calcular tu metabolismo.</p>
+      </div>
+      <div class="calc-body">
+        <!-- Mode toggle -->
+        <div class="calc-mode-toggle">
+          <button class="mode-btn active" onclick="setMode('gain', this)">💪 Ganar músculo</button>
+          <button class="mode-btn" onclick="setMode('lose', this)">🔥 Perder grasa</button>
+        </div>
+
+        <!-- Form -->
+        <div class="calc-form">
+          <div class="form-group">
+            <label>Sexo</label>
+            <div class="sex-toggle">
+              <button class="sex-btn active" onclick="setSex('male', this)">♂ Hombre</button>
+              <button class="sex-btn" onclick="setSex('female', this)">♀ Mujer</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Edad (años)</label>
+            <input type="number" id="age" placeholder="25" min="15" max="90" value="25">
+          </div>
+          <div class="form-group">
+            <label>Peso (kg)</label>
+            <input type="number" id="weight" placeholder="70" min="30" max="250" value="70">
+          </div>
+          <div class="form-group">
+            <label>Altura (cm)</label>
+            <input type="number" id="height" placeholder="175" min="130" max="230" value="175">
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label>Nivel de actividad física</label>
+            <select id="activity">
+              <option value="1.2">Sedentario — Trabajo de escritorio, sin deporte</option>
+              <option value="1.375">Ligeramente activo — 1-3 días/semana</option>
+              <option value="1.55" selected>Moderadamente activo — 3-5 días/semana</option>
+              <option value="1.725">Muy activo — 6-7 días/semana</option>
+              <option value="1.9">Extremadamente activo — Atleta o trabajo físico intenso</option>
+            </select>
+          </div>
+          <button class="calc-submit" onclick="calcCalories()">Calcular mis calorías →</button>
+        </div>
+
+        <!-- Results -->
+        <div class="calc-results" id="calc-results">
+          <div class="results-grid" id="results-grid"></div>
+          <div id="results-advice" style="margin-top:1.5rem; padding:1.25rem 1.5rem; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: var(--radius-sm); font-size:.9rem; color: #374151; line-height:1.7;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABITS -->
+<section id="habitos">
+  <div class="max-wrap">
+    <div class="section-header">
+      <div class="section-tag">Hábitos saludables</div>
+      <h2>El sistema que cambia<br><em>tu vida</em></h2>
+      <p>No se trata de perfección, sino de consistencia. Estos pilares te dan la estructura para crecer.</p>
+    </div>
+    <div class="habits-grid">
+      <div class="habit-block habit-block-accent reveal">
+        <div class="habit-icon">🌙</div>
+        <h3>Sueño de calidad</h3>
+        <p>La recuperación ocurre mientras duermes. Optimizar el sueño es la inversión más rentable en tu salud.</p>
+        <ul class="habit-list">
+          <li><span class="habit-check"></span> Acuéstate a la misma hora cada día</li>
+          <li><span class="habit-check"></span> Sin pantallas 1h antes de dormir</li>
+          <li><span class="habit-check"></span> Habitación fría y oscura (18-20°C)</li>
+          <li><span class="habit-check"></span> Evita cafeína después de las 14h</li>
+        </ul>
+      </div>
+      <div class="habit-block reveal reveal-delay-1">
+        <div class="habit-icon">🥗</div>
+        <h3>Alimentación consciente</h3>
+        <p>Come con intención, sin restricciones extremas. La consistencia supera a la perfección dietética.</p>
+        <ul class="habit-list">
+          <li><span class="habit-check"></span> Prioriza alimentos no procesados</li>
+          <li><span class="habit-check"></span> Proteína en cada comida principal</li>
+          <li><span class="habit-check"></span> Mastica despacio, sin distracciones</li>
+          <li><span class="habit-check"></span> Planifica tus comidas semanalmente</li>
+        </ul>
+      </div>
+      <div class="habit-block habit-block-green reveal reveal-delay-1">
+        <div class="habit-icon">💧</div>
+        <h3>Hidratación diaria</h3>
+        <p>Un vaso de agua al despertar activa el metabolismo. La deshidratación reduce el rendimiento cognitivo un 20%.</p>
+        <ul class="habit-list">
+          <li><span class="habit-check"></span> Bebe agua al despertar (500ml)</li>
+          <li><span class="habit-check"></span> Lleva siempre una botella contigo</li>
+          <li><span class="habit-check"></span> Meta: 35ml por kg de peso</li>
+        </ul>
+      </div>
+      <div class="habit-block reveal reveal-delay-2">
+        <div class="habit-icon">🏋️</div>
+        <h3>Movimiento diario</h3>
+        <p>No necesitas 2 horas en el gym. La actividad física acumulada a lo largo del día es enormemente efectiva.</p>
+        <ul class="habit-list">
+          <li><span class="habit-check"></span> 8.000 pasos mínimo al día</li>
+          <li><span class="habit-check"></span> Entrenamiento de fuerza 2-3x/semana</li>
+          <li><span class="habit-check"></span> Movilidad y estiramientos diarios</li>
+          <li><span class="habit-check"></span> Usa escaleras, camina más</li>
+        </ul>
+      </div>
+      <div class="habit-block habit-block-wide reveal">
+        <div class="habit-icon">📅</div>
+        <h3>Rutinas que funcionan: La semana saludable ideal</h3>
+        <p>Las personas más saludables no tienen fuerza de voluntad extraordinaria — tienen sistemas y rutinas que hacen que las decisiones correctas sean las más fáciles.</p>
+        <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:.5rem; margin-top:1.25rem;">
+          <div style="text-align:center" class="reveal reveal-delay-1"><div style="background:rgba(74,222,128,0.15);border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#16a34a">LUN<br>💪</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Fuerza</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-1"><div style="background:#f3f4f6;border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#374151">MAR<br>🚶</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Cardio</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-2"><div style="background:rgba(74,222,128,0.15);border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#16a34a">MIÉ<br>💪</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Fuerza</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-2"><div style="background:#f3f4f6;border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#374151">JUE<br>🧘</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Movilidad</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-3"><div style="background:rgba(74,222,128,0.15);border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#16a34a">VIE<br>💪</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Fuerza</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-3"><div style="background:#f3f4f6;border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#374151">SÁB<br>🏃</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Actividad</div></div>
+          <div style="text-align:center" class="reveal reveal-delay-4"><div style="background:#f9fafb;border-radius:10px;padding:.75rem .5rem;font-size:.75rem;font-weight:600;color:#6b7280">DOM<br>😴</div><div style="font-size:.65rem;color:#6b7280;margin-top:.3rem">Descanso</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARTS / STATS -->
+<section class="chart-section">
+  <div class="max-wrap">
+    <div class="section-header">
+      <div class="section-tag">Datos y estadísticas</div>
+      <h2>Lo que dice la <em>ciencia</em></h2>
+    </div>
+    <div class="chart-wrap">
+      <div>
+        <div class="chart-canvas-wrap reveal">
+          <h3>Distribución de macronutrientes recomendada</h3>
+          <div style="display:flex; align-items:center; gap:2rem;">
+            <svg viewBox="0 0 120 120" width="120" height="120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#f3f4f6" stroke-width="18"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#16a34a" stroke-width="18"
+                stroke-dasharray="125 189" stroke-dashoffset="0" stroke-linecap="butt"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#bbf7d0" stroke-width="18"
+                stroke-dasharray="75 239" stroke-dashoffset="-125" stroke-linecap="butt"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#d1fae5" stroke-width="18"
+                stroke-dasharray="65 249" stroke-dashoffset="-200" stroke-linecap="butt"/>
+            </svg>
+            <div class="chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#16a34a"></span> Proteína — 33%</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#bbf7d0"></span> Carbohidratos — 40%</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#d1fae5"></span> Grasas saludables — 27%</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-canvas-wrap reveal" style="margin-top:1.5rem;">
+          <h3>Actividad semanal recomendada (minutos)</h3>
+          <div class="bar-chart" id="activity-chart">
+            <div class="bar-col"><div class="bar-fill green" style="height:80%"></div><span class="bar-lbl">Lun</span></div>
+            <div class="bar-col"><div class="bar-fill light" style="height:50%"></div><span class="bar-lbl">Mar</span></div>
+            <div class="bar-col"><div class="bar-fill green" style="height:100%"></div><span class="bar-lbl">Mié</span></div>
+            <div class="bar-col"><div class="bar-fill light" style="height:30%"></div><span class="bar-lbl">Jue</span></div>
+            <div class="bar-col"><div class="bar-fill green" style="height:90%"></div><span class="bar-lbl">Vie</span></div>
+            <div class="bar-col"><div class="bar-fill light" style="height:60%"></div><span class="bar-lbl">Sáb</span></div>
+            <div class="bar-col"><div class="bar-fill" style="height:10%; background:#f3f4f6"></div><span class="bar-lbl">Dom</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div style="background: #111827; border-radius: var(--radius); padding:2.5rem; color:#fff; height:100%;">
+          <h3 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:1.5rem;letter-spacing:-0.02em;">¿Sabías que?</h3>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            <div style="padding:1.25rem;background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);">
+              <div style="font-size:2.2rem;font-family:'DM Serif Display',serif;color:#4ade80;margin-bottom:.4rem;">73%</div>
+              <div style="font-size:.875rem;opacity:.65;line-height:1.6;">de las personas que hacen ejercicio consistentemente reportan mejor salud mental y mayor energía diaria.</div>
+            </div>
+            <div style="padding:1.25rem;background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);">
+              <div style="font-size:2.2rem;font-family:'DM Serif Display',serif;color:#4ade80;margin-bottom:.4rem;">2x</div>
+              <div style="font-size:.875rem;opacity:.65;line-height:1.6;">más efectiva es la pérdida de grasa cuando se combina entrenamiento de fuerza con déficit calórico moderado.</div>
+            </div>
+            <div style="padding:1.25rem;background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);">
+              <div style="font-size:2.2rem;font-family:'DM Serif Display',serif;color:#4ade80;margin-bottom:.4rem;">21 días</div>
+              <div style="font-size:.875rem;opacity:.65;line-height:1.6;">es el tiempo mínimo para que un nuevo hábito empiece a automatizarse según estudios de neurociencia conductual.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="max-wrap">
+    <div class="section-header">
+      <div class="section-tag">Testimonios</div>
+      <h2>Historias de <em>transformación</em></h2>
+      <p>Personas reales que dieron el primer paso y cambiaron su relación con la salud.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Gracias a la calculadora entendí exactamente cuántas calorías necesitaba. Perdí 8 kg en 3 meses sin pasar hambre. El método funciona de verdad."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MG</div>
+          <div>
+            <div class="testi-name">María G.</div>
+            <div class="testi-role">Pérdida de peso · Madrid</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Empecé con los consejos de sueño y agua. En dos semanas mi nivel de energía cambió completamente. Ahora uso la app cada mañana como rutina."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CR</div>
+          <div>
+            <div class="testi-name">Carlos R.</div>
+            <div class="testi-role">Optimización de hábitos · Barcelona</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"La sección de ganar músculo me dio exactamente el protocolo que buscaba. Subí 4 kg de masa magra en 4 meses siguiendo las recomendaciones de proteína."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AL</div>
+          <div>
+            <div class="testi-name">Ana L.</div>
+            <div class="testi-role">Ganancia muscular · Valencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+  <div class="max-wrap">
+    <div class="section-header" style="text-align:center;margin-bottom:3rem;">
+      <div class="section-tag" style="justify-content:center;">FAQ</div>
+      <h2>Preguntas <em>frecuentes</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué fórmula usa la calculadora de calorías?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Usamos la fórmula <strong>Mifflin-St Jeor</strong>, considerada la más precisa para calcular la tasa metabólica basal (TMB). Se multiplica por el factor de actividad para obtener las calorías de mantenimiento. Para pérdida de grasa aplicamos un déficit del 15-20%, y para ganancia muscular un superávit del 10-15%.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánta proteína necesito realmente?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Para la mayoría de personas activas, se recomienda entre <strong>1.6g y 2.2g de proteína por kilogramo de peso corporal</strong>. En modo de pérdida de grasa es importante mantenerse en el rango alto para preservar la masa muscular. Si eres sedentario, 1.2g/kg es suficiente para funciones básicas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿En cuánto tiempo veré resultados?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Los primeros cambios en energía y bienestar son perceptibles en <strong>1-2 semanas</strong>. Los cambios físicos visibles suelen aparecer entre la semana 4 y 8 con consistencia. La clave es la constancia: pequeñas mejoras diarias generan transformaciones significativas en 3-6 meses.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Es necesario contar calorías siempre?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">No necesariamente. Contar calorías durante <strong>4-6 semanas</strong> te ayuda a desarrollar una intuición sobre las porciones. Después, muchas personas pueden mantener buenos hábitos sin contar estrictamente. Lo importante es entender los fundamentos y tener criterio para tomar buenas decisiones alimentarias.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo ganar músculo y perder grasa al mismo tiempo?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Sí, pero con matices. La <strong>recomposición corporal</strong> es posible principalmente en personas principiantes, personas con sobrepeso, o quienes vuelven al entrenamiento tras un descanso. Para personas avanzadas, es más eficiente enfocarse en una fase a la vez: primero músculo (superávit calórico) y luego definición (déficit calórico).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué hago si estoy estancado en mi progreso?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">El estancamiento es normal. Primero revisa si estás siendo preciso con las calorías — es muy común subestimar la ingesta. Considera ajustar las calorías un <strong>5-10%</strong> hacia arriba o abajo según tu objetivo. También puede ser útil cambiar el tipo de ejercicio o aumentar el NEAT (actividad no deportiva diaria como caminar).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="padding:80px 5%; background: #111827; text-align:center;">
+  <div class="max-wrap">
+    <div style="max-width:600px;margin:0 auto;" class="reveal">
+      <div style="font-size:3rem;margin-bottom:1.25rem">🌿</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:#fff;letter-spacing:-0.03em;margin-bottom:1rem;">Tu mejor versión empieza <em style='color:#4ade80;font-style:italic;'>hoy</em></h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;font-weight:300;margin-bottom:2rem;line-height:1.7;">No esperes al lunes. No esperes a estar listo. El único momento para comenzar es ahora.</p>
+      <a href="#calculadora" class="btn-primary" style="background:#4ade80;color:#0a0a0a;font-weight:600;padding:1rem 2.5rem;font-size:1rem;">Calcular mis calorías →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Saludable<span>Paso</span></h3>
+        <p>Tu compañero de bienestar basado en ciencia. Mejora tu salud, un paso a la vez.</p>
+        <div class="footer-social">
+          <div class="social-icon">𝕏</div>
+          <div class="social-icon">in</div>
+          <div class="social-icon">📷</div>
+          <div class="social-icon">▶</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Herramientas</h4>
+        <a href="#calculadora">Calculadora de calorías</a>
+        <a href="#habitos">Plan de hábitos</a>
+        <a href="#consejos">Consejos diarios</a>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Blog de salud</a>
+        <a href="#">Contacto</a>
+        <a href="#">Prensa</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+        <a href="#">Términos de uso</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Saludable Paso — Todos los derechos reservados</span>
+      <span>Hecho con 💚 para tu bienestar</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// MOBILE MENU
+function toggleMobileMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '68px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = '#ffffff';
+  links.style.padding = '1.5rem 5%';
+  links.style.borderBottom = '1px solid #e5e7eb';
+  links.style.gap = '1.25rem';
+  links.style.zIndex = '99';
+}
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// NAV SHADOW
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow = window.scrollY > 10
+    ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
+});
+
+// CALCULATOR
+let calcMode = 'gain';
+let calcSex = 'male';
+
+function setMode(mode, btn) {
+  calcMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-results').classList.remove('show');
+}
+
+function setSex(sex, btn) {
+  calcSex = sex;
+  document.querySelectorAll('.sex-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function calcCalories() {
+  const age = parseFloat(document.getElementById('age').value) || 25;
+  const weight = parseFloat(document.getElementById('weight').value) || 70;
+  const height = parseFloat(document.getElementById('height').value) || 175;
+  const activity = parseFloat(document.getElementById('activity').value) || 1.55;
+
+  // Mifflin-St Jeor
+  let bmr;
+  if (calcSex === 'male') {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const tdee = Math.round(bmr * activity);
+  const protein = calcMode === 'gain'
+    ? Math.round(weight * 2.0)
+    : Math.round(weight * 1.8);
+
+  let targetCal, label, description, icon, tip;
+
+  if (calcMode === 'gain') {
+    targetCal = Math.round(tdee * 1.12);
+    label = 'Superávit calórico';
+    description = 'Para ganar músculo';
+    icon = '💪';
+    tip = `Con estas ${targetCal} kcal/día y ${protein}g de proteína, tu cuerpo tiene los recursos para construir músculo. Distribuye las calorías en 4-5 comidas y entrena 3-4 veces por semana con sobrecarga progresiva.`;
+  } else {
+    targetCal = Math.round(tdee * 0.82);
+    label = 'Déficit calórico';
+    description = 'Para perder grasa';
+    icon = '🔥';
+    tip = `Con ${targetCal} kcal/día mantendrás un déficit saludable de ~${tdee - targetCal} kcal. Consume ${protein}g de proteína para preservar la masa muscular. Espera perder 0.5-1 kg por semana de forma sostenible.`;
+  }
+
+  const resultsGrid = document.getElementById('results-grid');
+  resultsGrid.innerHTML = `
+    <div class="result-card result-card-main">
+      <div class="result-icon">${icon}</div>
+      <div class="result-label">${label}</div>
+      <div class="result-value">${targetCal.toLocaleString()}</div>
+      <div class="result-unit">kcal / día</div>
+      <div class="result-tip">${description}</div>
+    </div>
+    <div class="result-card result-card-green">
+      <div class="result-icon">🥩</div>
+      <div class="result-label">Proteína diaria</div>
+      <div class="result-value">${protein}</div>
+      <div class="result-unit">gramos / día</div>
+      <div class="result-tip">${Math.round(protein * 4)} kcal de proteína</div>
+    </div>
+    <div class="result-card result-card-gray">
+      <div class="result-icon">⚡</div>
+      <div class="result-label">Mantenimiento</div>
+      <div class="result-value">${tdee.toLocaleString()}</div>
+      <div class="result-unit">kcal / día (TDEE)</div>
+      <div class="result-tip">TMB: ${Math.round(bmr)} kcal</div>
+    </div>
+  `;
+
+  document.getElementById('results-advice').innerHTML = `
+    <strong>💡 Recomendación personalizada:</strong> ${tip}
+  `;
+
+  const resultsEl = document.getElementById('calc-results');
+  resultsEl.classList.add('show');
+  setTimeout(() => resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ANIMATED BARS (on scroll)
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+        bar.style.height = '0';
+        setTimeout(() => {
+          bar.style.transition = 'height .6s ease';
+          bar.style.height = ['80%','50%','100%','30%','90%','60%','10%'][i] || '50%';
+        }, i * 80);
+      });
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const actChart = document.getElementById('activity-chart');
+if (actChart) {
+  actChart.querySelectorAll('.bar-fill').forEach(b => b.style.height = '0');
+  barObserver.observe(actChart);
+}
+
+// STAT COUNTER ANIMATION
+function animateCounter(el, target, suffix = '') {
+  let start = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.innerHTML = target + suffix; clearInterval(timer); return; }
+    el.innerHTML = Math.floor(start) + suffix;
+  }, 16);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const nums = [
+        { el: e.target.querySelectorAll('.stat-item-num')[0], val: 50, suffix: 'K+' },
+        { el: e.target.querySelectorAll('.stat-item-num')[1], val: 12, suffix: 'M' },
+        { el: e.target.querySelectorAll('.stat-item-num')[2], val: 96, suffix: '%' },
+        { el: e.target.querySelectorAll('.stat-item-num')[3], val: 200, suffix: '+' },
+      ];
+      nums.forEach(n => { if (n.el) animateCounter(n.el, n.val, n.suffix); });
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsBar = document.querySelector('.stats-inner');
+if (statsBar) counterObserver.observe(statsBar);
+</script>
+</body>
+</html>
