@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saludable Paso — Mejora tu salud paso a paso</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6269544985503758" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -103,12 +104,6 @@
                       linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-  @media (prefers-color-scheme: dark) {
-    .hero-grid-overlay {
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    }
-  }
   .hero-inner {
     max-width: 1200px; margin: 0 auto; width: 100%;
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -184,9 +179,6 @@
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: var(--shadow-md);
-  }
-  @media (prefers-color-scheme: dark) {
-    .stat-card { background: rgba(31,41,55,0.8); border: 1px solid rgba(255,255,255,0.08); }
   }
   .stat-card-main {
     width: 260px; top: 40px; left: 20px;
@@ -508,6 +500,27 @@
   }
   .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
 
+  /* ADSENSE WRAPPER */
+  .ad-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .ad-slot-leaderboard {
+    padding: 1rem 5%;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .ad-slot-mid {
+    margin-top: 3rem;
+  }
+  .ad-slot-square {
+    padding: 2rem 5%;
+    background: #ffffff;
+  }
+
   /* FOOTER */
   footer {
     background: #111827;
@@ -636,7 +649,6 @@
 
     <div class="hero-visual">
       <div class="hero-card-stack">
-        <!-- Main stat card -->
         <div class="stat-card stat-card-main">
           <div class="stat-label">Metabolismo basal</div>
           <div class="stat-value">1,847 <span class="unit">kcal</span></div>
@@ -650,8 +662,6 @@
             <div class="mini-bar-seg"></div>
           </div>
         </div>
-
-        <!-- Calories ring -->
         <div class="stat-card stat-card-calories">
           <div class="stat-label">Hoy</div>
           <svg class="ring-chart" viewBox="0 0 56 56">
@@ -665,8 +675,6 @@
             <div class="stat-sub">de 1,847 kcal</div>
           </div>
         </div>
-
-        <!-- Water card -->
         <div class="stat-card stat-card-water">
           <div class="stat-label">Hidratación</div>
           <div class="stat-value" style="font-size:1.6rem">1.8 <span class="unit">L</span></div>
@@ -679,8 +687,6 @@
             <div class="mini-bar-seg"></div>
           </div>
         </div>
-
-        <!-- Habits card -->
         <div class="stat-card stat-card-habits">
           <div class="stat-label">Hábitos</div>
           <div class="stat-value" style="font-size:1.4rem">4/6</div>
@@ -705,12 +711,15 @@
   </div>
 </div>
 
-<!-- ADSENSE BANNER TOP -->
-<div style="background:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:1rem 5%;display:flex;justify-content:center;align-items:center;">
-  <div style="width:100%;max-width:728px;min-height:90px;background:#f3f4f6;border:1.5px dashed #d1d5db;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
-    <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
-    <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 728×90 Leaderboard --&gt;</code>
-  </div>
+<!-- ADSENSE BANNER TOP — 728×90 Leaderboard / Responsive -->
+<div class="ad-slot ad-slot-leaderboard">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-6269544985503758"
+       data-ad-slot="4527446677"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <!-- TIPS SECTION -->
@@ -726,25 +735,28 @@
       <!-- Cards injected by JS -->
     </div>
 
-    <!-- ADSENSE MID-CONTENT -->
-    <div style="margin-top:3rem;display:flex;justify-content:center;">
-      <div style="width:100%;max-width:970px;min-height:90px;background:#f9fafb;border:1.5px dashed #d1d5db;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
-        <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
-        <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 970×90 Large Leaderboard / Responsive --&gt;</code>
-      </div>
+    <!-- ADSENSE MID-CONTENT — 970×90 Large Leaderboard / Responsive -->
+    <div class="ad-slot ad-slot-mid">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6269544985503758"
+           data-ad-slot="9524622487"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Tip counter + date -->
     <div style="margin-top:2rem;text-align:center;font-size:.82rem;color:#6b7280;" id="tips-date-label"></div>
   </div>
 </section>
 
-<!-- ADSENSE SQUARE / RECTANGLE (between tips and calculator) -->
-<div style="padding:2rem 5%;background:#ffffff;display:flex;justify-content:center;">
-  <div style="width:100%;max-width:336px;min-height:280px;background:#f9fafb;border:1.5px dashed #d1d5db;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
-    <span style="font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af;">Publicidad · Google AdSense</span>
-    <code style="font-size:.7rem;color:#6b7280;">&lt;!-- 336×280 Large Rectangle --&gt;</code>
-  </div>
+<!-- ADSENSE RECTANGLE — 336×280 entre consejos y calculadora -->
+<div class="ad-slot ad-slot-square">
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:336px;height:280px"
+       data-ad-client="ca-pub-6269544985503758"
+       data-ad-slot="5190929723"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <!-- CALCULATOR SECTION -->
@@ -762,13 +774,10 @@
         <p>Usa la fórmula Mifflin-St Jeor, la más precisa para calcular tu metabolismo.</p>
       </div>
       <div class="calc-body">
-        <!-- Mode toggle -->
         <div class="calc-mode-toggle">
           <button class="mode-btn active" onclick="setMode('gain', this)">💪 Ganar músculo</button>
           <button class="mode-btn" onclick="setMode('lose', this)">🔥 Perder grasa</button>
         </div>
-
-        <!-- Form -->
         <div class="calc-form">
           <div class="form-group">
             <label>Sexo</label>
@@ -801,8 +810,6 @@
           </div>
           <button class="calc-submit" onclick="calcCalories()">Calcular mis calorías →</button>
         </div>
-
-        <!-- Results -->
         <div class="calc-results" id="calc-results">
           <div class="results-grid" id="results-grid"></div>
           <div id="results-advice" style="margin-top:1.5rem; padding:1.25rem 1.5rem; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: var(--radius-sm); font-size:.9rem; color: #374151; line-height:1.7;"></div>
@@ -1101,7 +1108,6 @@
 </footer>
 
 <script>
-// MOBILE MENU
 function toggleMobileMenu() {
   const links = document.querySelector('.nav-links');
   links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
@@ -1117,19 +1123,16 @@ function toggleMobileMenu() {
   links.style.zIndex = '99';
 }
 
-// SCROLL ANIMATIONS
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// NAV SHADOW
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.boxShadow = window.scrollY > 10
     ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
 });
 
-// CALCULATOR
 let calcMode = 'gain';
 let calcSex = 'male';
 
@@ -1152,7 +1155,6 @@ function calcCalories() {
   const height = parseFloat(document.getElementById('height').value) || 175;
   const activity = parseFloat(document.getElementById('activity').value) || 1.55;
 
-  // Mifflin-St Jeor
   let bmr;
   if (calcSex === 'male') {
     bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -1215,7 +1217,6 @@ function calcCalories() {
   setTimeout(() => resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
-// FAQ
 function toggleFaq(btn) {
   const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1223,7 +1224,6 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-// ANIMATED BARS (on scroll)
 const barObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1245,7 +1245,6 @@ if (actChart) {
   barObserver.observe(actChart);
 }
 
-// STAT COUNTER ANIMATION
 function animateCounter(el, target, suffix = '') {
   let start = 0;
   const step = target / 60;
